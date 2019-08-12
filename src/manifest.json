@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+    "name": "Comike Web Catalog Favorites Support Link",
+    "version": "1.0",
+    "description": "コミケWebカタログのお気に入りにあるサポートアイコンをリンク化する",
+    "content_scripts": [
+        {
+            "matches": [ "https://webcatalog.circle.ms/User/Favorites/*"],
+            "js": [ "jquery.min.js", "changeIconToLink.js" ] 
+        }
+    ]
+}
