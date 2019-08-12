@@ -52,7 +52,14 @@ function changeIconToLink(circleDetailDom, circleData){
 }
 
 function clearEvent(){
-    $('.support-list-twitter').off('click');
+    let swampDom = function(i, e){
+        $(e).clone(true).insertAfter(e);
+        $(e).remove();
+    };
+    //DOMに紐付けられたイベントを外す方法が見つからないため、クローンを生成してオリジナルを削除することでイベントを強引にはずしている。
+    $('.support-list-twitter').each(swampDom);
+    $('.support-list-pixiv').each(swampDom);
+    $('.support-list-niconico').each(swampDom);
 }
 
 function circleListDetailEach(){
@@ -78,7 +85,7 @@ function circleListDetailEach(){
 }
 function main(){
     $(window).on('load',function(){
-        setTimeout(clearEvent, 5000); //目的のイベントが紐付けされたあとに実行されるように。
+        setTimeout(clearEvent);
         circleListDetailEach();
     });
 }
