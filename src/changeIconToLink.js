@@ -60,6 +60,10 @@ function clearEvent(){
     $('.support-list-twitter').each(swampDom);
     $('.support-list-pixiv').each(swampDom);
     $('.support-list-niconico').each(swampDom);
+    //bookmarkletとして使うときは以下のコードを使う（jQueryのインスタンスが同じせいなのか、クローンを生成してもイベントが外れない。）
+    //$('.support-list-twitter').off('click');
+    //$('.support-list-pixiv').off('click');
+    //$('.support-list-niconico').off('click');
 }
 
 function circleListDetailEach(){
@@ -84,9 +88,7 @@ function circleListDetailEach(){
     });
 }
 function main(){
-    $(window).on('load',function(){
-        setTimeout(clearEvent);
-        circleListDetailEach();
-    });
+    clearEvent();
+    circleListDetailEach();
 }
 main();

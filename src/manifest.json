@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Comike Web Catalog Favorites Support Link",
-    "version": "1.0",
+    "version": "1.1",
     "description": "コミケWebカタログのお気に入りにあるサポートアイコンをリンク化する",
     "content_scripts": [
         {
