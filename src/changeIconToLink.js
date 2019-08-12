@@ -1,13 +1,11 @@
-const domain = 'webcatalog.circle.ms';
-
 function saveCash(localkey, data){
     if(data){
-        sessionStorage[domain + localkey] = JSON.stringify(data);
+        sessionStorage[localkey] = JSON.stringify(data);
     }
 }
 
 function loadCash(localkey){
-    let jsondata = sessionStorage[domain + localkey];
+    let jsondata = sessionStorage[localkey];
     if(jsondata){
         return JSON.parse(jsondata);
     }
@@ -16,7 +14,9 @@ function loadCash(localkey){
 
 function genelateCircleData(htmltext){
     let circleData = {
-        twitterLink: /https?:\/\/twitter\.com\/[\w:%#\$&\?\(\)~\.=\+\-]+(?=")/.exec(htmltext)
+        twitterLink: /https?:\/\/twitter\.com\/[\w:%#\$&\?\(\)~\.=\+\-]+(?=")/.exec(htmltext),
+        pixivLink: /https?:\/\/www\.pixiv\.net\/[\w:%#\$&\?\(\)~\.=\+\-\/]+(?=")/.exec(htmltext),
+        nicovideoLink: /https?:\/\/www\.nicovideo\.jp\/[\w:%#\$&\?\(\)~\.=\+\-\/]+(?=")/.exec(htmltext),
     };
     return circleData;
 }
@@ -27,11 +27,8 @@ function setAnc(dom, link){
     }
     $(dom).parent().attr('href', link);
     $(dom).parent().attr('target', '_blank');
-    var imgsrc = '/common/images/common/img_icon_twitter_on.png';
-    if($(dom).attr('src') != imgsrc){
-        $(dom).attr('src', imgsrc);
-        $(dom).css('cursor', 'pointer');
-    }
+    $(dom).css('cursor', 'pointer');
+    $(dom).css('border', 'solid 1px red');
 }
 
 function ajaxCirclePage(curl, successCallback){
@@ -45,6 +42,12 @@ function ajaxCirclePage(curl, successCallback){
 function changeIconToLink(circleDetailDom, circleData){
     if(circleData.twitterLink){
         setAnc($(circleDetailDom).next().next().find('.support-list-twitter'), circleData.twitterLink);
+    }
+    if(circleData.pixivLink){
+        setAnc($(circleDetailDom).next().next().find('.support-list-pixiv'), circleData.pixivLink);
+    }
+    if(circleData.nicovideoLink){
+        setAnc($(circleDetailDom).next().next().find('.support-list-niconico'), circleData.nicovideoLink);
     }
 }
 
