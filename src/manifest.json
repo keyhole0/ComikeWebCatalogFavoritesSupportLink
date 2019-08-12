@@ -5,7 +5,7 @@
     "description": "コミケWebカタログのお気に入りにあるサポートアイコンをリンク化する",
     "content_scripts": [
         {
-            "matches": [ "https://webcatalog.circle.ms/User/Favorites/*"],
+            "matches": [ "https://webcatalog.circle.ms/User/Favorites*"],
             "js": [ "jquery.min.js", "changeIconToLink.js" ] 
         }
     ]
